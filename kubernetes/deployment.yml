@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: delivery
-          image: 271153858532.dkr.ecr.ap-northeast-2.amazonaws.com/flower-delivery:v1 
+          image: 271153858532.dkr.ecr.ap-northeast-2.amazonaws.com/admin20-flower-delivery:v1 
           ports:
             - containerPort: 8080
           readinessProbe:
