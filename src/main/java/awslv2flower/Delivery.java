@@ -29,6 +29,19 @@ public class Delivery {
             BeanUtils.copyProperties(this, shipCancelled);
             shipCancelled.publishAfterCommit();
 
+        }else if (this.getStatus().equals("BaeminDeliveryStart")){
+            BaeminRequested baeminRequested = new BaeminRequested();
+            BeanUtils.copyProperties(this, baeminRequested);
+            baeminRequested.publishAfterCommit();
+
+            //Following code causes dependency to external APIs
+            // it is NOT A GOOD PRACTICE. instead, Event-Policy mapping is recommended.
+
+            awslv2flower.external.BaeminDelivery baeminDelivery = new awslv2flower.external.BaeminDelivery();
+            // mappings goes here
+            baeminDelivery.setOrderId(this.getId());
+            baeminDelivery.setStatus("BaeminDeliveryStart");
+            DeliveryApplication.applicationContext.getBean(awslv2flower.external.BaeminDeliveryService.class).baeminRequest(baeminDelivery);
         }
     }
 

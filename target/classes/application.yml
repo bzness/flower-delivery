@@ -37,6 +37,10 @@ logging:
     org.springframework.cloud: debug
 server:
   port: 8082
+
+api:
+  url:
+    baemindelivery: http://localhost:8085  
 ---
 
 spring:
@@ -62,3 +66,7 @@ spring:
         event-out:
           destination: awslv2flower
           contentType: application/json
+          
+api:
+  url:
+    baemindelivery: http://admin20-flower-baemindelivery:8080
